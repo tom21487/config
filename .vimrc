@@ -44,7 +44,7 @@ nnoremap <silent> ]f :call
 \ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
 
 " C/C++
-au FileType lpc set smartindent
+au FileType c set smartindent
 au FileType cpp set smartindent
 
 " Markdown
