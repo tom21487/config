@@ -4,55 +4,116 @@
 ;; Enable transient mark mode
 (transient-mark-mode 1)
 
-;; Enable Org mode
-(require 'org)
-
-;; Set Org agenda
-(setq org-agenda-files '("~/Documents/org_files/tasks"))
-
-;; Enable word wrap for Org mode
-(with-eval-after-load 'org       
-  (add-hook 'org-mode-hook #'visual-line-mode))
-
 ;; Toggle the menu bar (t -> on, -1 -> off)
 (menu-bar-mode t)
+
+;; Show matching parenthesis
+(show-paren-mode t)
 
 ;; Smooth scrolling (one line at a time)
 (setq scroll-step 1)
 
-;; Tab settings: 2 spaces.
+;; Tab settings: 4 spaces
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq-default c-basic-offset tab-width) ; indentation
+(setq-default python-offset 4)
 
 ;; Show line numbers
-(global-display-line-numbers-mode)
+;;(global-display-line-numbers-mode)
+(add-hook 'c++-mode-hook 'display-line-numbers-mode)
+(add-hook 'c-mode-hook 'display-line-numbers-mode)
+(setq linum-format "%3d ")
 
-;; Enable Zenburn theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'zenburn t)
-
-;; Package Management.  Configure the built-in emacs package manager to use
-;; several publicly available repositories.
+;; MELPA
 (require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Enable use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
+;; Org
+(require 'org)
+;; Set Org agenda
+(setq org-agenda-files '("~/Documents/org"))
+;; Wrapping and indenting
+(with-eval-after-load 'org       
+  (add-hook 'org-mode-hook (lambda() (visual-line-mode 1)))
+  (add-hook 'org-mode-hook (lambda() (electric-indent-local-mode -1)))
+)
+
+;; Docview
+(setq doc-view-resolution 144)
+
+;; EMMS
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+(setq emms-source-file-default-directory "~/Music/")
+
+;; pyim
+(require 'pyim)
+(require 'pyim-basedict)
+(pyim-basedict-enable)
+(setq default-input-method "pyim")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(company use-package)))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(company-quickhelp-color-background "#4F4F4F")
+ '(company-quickhelp-color-foreground "#DCDCCC")
+ '(custom-enabled-themes '(wombat))
+ '(custom-safe-themes
+   '("b77a00d5be78f21e46c80ce450e5821bdc4368abf4ffe2b77c5a66de1b648f10" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+ '(fci-rule-color "#383838")
+ '(hl-todo-keyword-faces
+   '(("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7")
+     ("OKAY" . "#4f97d7")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#86dc2f")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f")))
+ '(nrepl-message-colors
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
+ '(org-fontify-done-headline nil)
+ '(org-fontify-todo-headline nil)
+ '(package-selected-packages
+   '(pyim-basedict pyim emms zenburn-theme spacemacs-theme with-editor use-package transient dash))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   '((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3")))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
