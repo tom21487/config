@@ -17,7 +17,7 @@
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq-default c-basic-offset tab-width) ; indentation
-(setq-default python-offset 4)
+(setq-default python-offset tab-width)
 
 ;; Show line numbers
 ;;(global-display-line-numbers-mode)
@@ -91,7 +91,7 @@
  '(org-fontify-done-headline nil)
  '(org-fontify-todo-headline nil)
  '(package-selected-packages
-   '(pyim-basedict pyim emms zenburn-theme spacemacs-theme with-editor use-package transient dash))
+   '(csharp-mode pyim-basedict pyim emms zenburn-theme spacemacs-theme with-editor use-package transient dash))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
