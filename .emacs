@@ -25,6 +25,23 @@
 (add-hook 'c-mode-hook 'display-line-numbers-mode)
 (setq linum-format "%3d ")
 
+;; Verilog mode semicolons
+(setq verilog-auto-newline nil)
+
+;; Keyboard macros
+;; S-1 -> new-line-above
+(fset 'new-line-above
+   (kmacro-lambda-form [?\C-p ?\C-e return] 0 "%d"))
+(global-set-key [8388657] 'new-line-above)
+;; S-2 -> remove-indentation
+(fset 'remove-indentation
+   (kmacro-lambda-form [?\C-  ?\C-a ?\C-b backspace] 0 "%d"))
+(global-set-key [8388658] 'remove-indentation)
+;; S-3 -> change-word
+(fset 'change-word
+   (kmacro-lambda-form [?\C-  ?\M-f backspace] 0 "%d"))
+(global-set-key [8388659] 'change-word)
+
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
