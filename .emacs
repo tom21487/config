@@ -3,8 +3,6 @@
 (setq inhibit-splash-screen t)
 ;; Hide scroll bar
 (scroll-bar-mode -1)
-;; Hide tool bar
-(tool-bar-mode -1)
 ;; Show tab bar
 (tab-bar-mode t)
 ;; Show matching parenthesis
@@ -18,22 +16,16 @@
 (setq tab-width 4)
 (setq c-basic-offset tab-width)
 (setq python-offset tab-width)
+(setq tab-stop-list '(0 4 8))
 ;; Show line numbers
-(setq column-number-mode t)
 (setq linum-format "%3d ")
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-;; Verilog smart semicolons
-(setq verilog-auto-newline nil)
-;; Blink cursor
-(setq blink-cursor-mode nil)
 ;; Case-sensitive search
 (setq case-fold-search nil)
-;; Always truncate lines (if setq-default doesn't work try language-specific settings)
+;; Always truncate lines
 (setq-default truncate-lines t)
 ;; End sentences with a single space
 (setq sentence-end-double-space nil)
-;; Show unfinished commands immediately
-(setq echo-keystrokes 0.01)
 
 ; Section 1: autos
 ;; New line above
@@ -51,6 +43,13 @@
                       (font-spec :family chinese :size chinese-size))))
 (set-font "WenQuanYi Zen Hei Mono" "WenQuanYi Zen Hei Mono" 22 22)
 
+; Section 2: languages
+;; Verilog
+(setq verilog-auto-newline nil)
+(setq verilog-auto-lineup 'ignore)
+;; HTML
+(setq sgml-basic-offset 4)
+
 ; Section 2: packages
 ;; MELPA
 (require 'package)
@@ -65,38 +64,48 @@
 ;; Wrapping and indenting
 (with-eval-after-load 'org       
   (add-hook 'org-mode-hook (lambda() (visual-line-mode 1)))
-  (add-hook 'org-mode-hook (lambda() (electric-indent-local-mode -1)))
-)
-;; Docview
+  ;;(add-hook 'org-mode-hook (lambda() (electric-indent-local-mode -1)))
+ )
+;; PDFs
 (setq doc-view-resolution 144)
-;; EMMS (GNU ELPA)
+(pdf-tools-install)
+
+;; EMMS
 (require 'emms-setup)
 (emms-all)
 (emms-default-players)
 (setq emms-source-file-default-directory "~/Music/")
-;; pyim (GNU ELPA)
+;;(setq emms-setup-default-player-list '(emms-player-mpv))
+;; pyim
 (require 'pyim)
 (require 'pyim-basedict)
 (pyim-basedict-enable)
 (setq default-input-method "pyim")
 
-;; Section 3: custom
+;; Section 3: themes
+; Spacemacs
+(setq spacemacs-theme-org-height nil)
+
+;; Section 4: custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
  '(custom-enabled-themes '(spacemacs-light))
  '(custom-safe-themes
-   '("4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
- '(emms-setup-default-player-list '(emms-player-mpv))
+   '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
  '(package-selected-packages
-   '(solarized-theme zenburn-theme use-package tablist spacemacs-theme pyim-basedict pyim monokai-theme magit-section goto-chg git-commit emms csharp-mode))
- '(sgml-basic-offset 4)
- '(tab-stop-list '(0 4 8)))
+   '(pdf-tools markdown-mode solarized-theme zenburn-theme use-package tablist spacemacs-theme pyim-basedict pyim monokai-theme magit-section goto-chg git-commit emms csharp-mode))
+ '(show-paren-mode t)
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
