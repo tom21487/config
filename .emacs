@@ -38,12 +38,11 @@
 )
 ;; Org
 (require 'org)
-;; Set Org agenda
-(setq org-agenda-files '("~/Documents/org"))
-(with-eval-after-load 'org       
-  (add-hook 'org-mode-hook (lambda() (visual-line-mode 1)))
-  (add-hook 'org-mode-hook (lambda() ((setq electric-indent-mode nil))))
+;;; Used in custom org hook
+(defun remove-electric-indent-mode()
+    (electric-indent-local-mode -1)
 )
+
 ;; PDFs
 (setq doc-view-resolution 144)
 (pdf-tools-install)
@@ -75,11 +74,13 @@
  '(c-basic-offset 4)
  '(case-fold-search nil)
  '(column-number-mode t)
- '(custom-enabled-themes '(tango-dark))
+ '(custom-enabled-themes '(wombat))
  '(indent-tabs-mode nil)
+ '(org-agenda-files '("~/Documents/org"))
  '(org-agenda-span 'fortnight)
  '(org-fontify-done-headline nil)
  '(org-fontify-todo-headline nil)
+ '(org-mode-hook '(remove-electric-indent-mode))
  '(package-selected-packages
    '(vterm pdf-tools markdown-mode solarized-theme zenburn-theme use-package tablist spacemacs-theme pyim-basedict pyim monokai-theme magit-section goto-chg git-commit emms csharp-mode))
  '(pdf-view-midnight-colors '("#655370" . "#fbf8ef"))
