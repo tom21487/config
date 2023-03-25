@@ -21,27 +21,27 @@
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
                       (font-spec :family chinese :size chinese-size))))
-;(if (display-graphic-p)
-;    (progn
-;      (set-font "WenQuanYi Zen Hei Mono" "WenQuanYi Zen Hei Mono" 24 24)
-;    )
-;)
+(if (display-graphic-p)
+  (progn
+    (set-font "WenQuanYi Zen Hei Mono" "WenQuanYi Zen Hei Mono" 24 24)
+  ))
 
 ; Section 2: packages
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-;; Dired
-(with-eval-after-load 'dired
-  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-)
+
 ;; Org
 (require 'org)
-;;; Used in custom org hook
-(defun remove-electric-indent-mode()
-    (electric-indent-local-mode -1)
-)
+(defun remove-electric-indent-mode ()
+  "Used in custom's org mode hook"
+  (electric-indent-local-mode -1))
+(defun checkbox ()
+  "Checks box and moves to next line."
+  (interactive)
+  (org-ctrl-c-ctrl-c)
+  (next-line))
 
 ;; PDFs
 (setq doc-view-resolution 144)
@@ -75,6 +75,7 @@
  '(case-fold-search nil)
  '(column-number-mode t)
  '(custom-enabled-themes '(wombat))
+ '(dired-mode-hook '(pdf-occur-dired-minor-mode dired-hide-details-mode))
  '(indent-tabs-mode nil)
  '(org-agenda-files '("~/Documents/org"))
  '(org-agenda-span 'fortnight)
