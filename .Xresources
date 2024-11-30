@@ -1,0 +1,38 @@
+! https://wiki.archlinux.org/title/X_resources
+! https://wiki.archlinux.org/title/Xterm
+! https://unix4lyfe.org/xterm/
+! Load using: xrdb -load .Xresources
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+XTerm.vt100.saveLines: 8192
+XTerm.vt100.scrollBar: false
+XTerm.vt100.faceName: DejaVu Sans Mono
+XTerm.vt100.faceNameDoublesize: WenQuanYi WenQuanYi Bitmap Song
+XTerm.vt100.faceSize: 14
+XTerm.vt100.scaleHeight: 1.01
+XTerm.vt100.loginShell: true
+XTerm.vt100.foreground: rgb:a8/a8/a8
+XTerm.vt100.background: rgb:00/00/00
+XTerm.vt100.color0: rgb:00/00/00
+XTerm.vt100.color1: rgb:a8/00/00
+XTerm.vt100.color2: rgb:00/a8/00
+XTerm.vt100.color3: rgb:a8/54/00
+XTerm.vt100.color4: rgb:00/00/a8
+XTerm.vt100.color5: rgb:a8/00/a8
+XTerm.vt100.color6: rgb:00/a8/a8
+XTerm.vt100.color7: rgb:a8/a8/a8
+XTerm.vt100.color8: rgb:54/54/54
+XTerm.vt100.color9: rgb:fc/54/54
+XTerm.vt100.color10: rgb:54/fc/54
+XTerm.vt100.color11: rgb:fc/fc/54
+XTerm.vt100.color12: rgb:54/54/fc
+XTerm.vt100.color13: rgb:fc/54/fc
+XTerm.vt100.color14: rgb:54/fc/fc
+XTerm.vt100.color15: rgb:fc/fc/fc
+XTerm.vt100.boldMode: false
+XTerm.vt100.colorBDMode: true
+XTerm.vt100.colorBD: rgb:fc/fc/fc
